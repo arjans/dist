@@ -9,4 +9,4 @@ This project is a way to easily experiment with signed distance fields, a repres
 2. Clone this repo
 3. Open "geometry.rkt" in Dr Racket
 4. Hit "Run"
-5. Enter `(render (sphere 1 0 0 0) 2)` in the repl
+5. Enter `(render (sphere 1) 2)` in the repl
