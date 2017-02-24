@@ -2,17 +2,35 @@
 
 (require (only-in plot/utils polar->cartesian))
 
-(provide norm distance total-atan total-asin total-acos
+(provide P P-x P-y P-z P-ρ P-θ P-ϕ
+         total-atan total-asin total-acos
          nearest-multiple diff-nearest-mult
-         3d-cartesian->3d-polar polar->cartesian)
+         polar->cartesian)
 
-(: norm (-> Real * Nonnegative-Real))
-(define (norm . xs)
-  (sqrt (foldl + 0 (map sqr xs))))
+;;
+;; Definition of 3d points
+;;
 
-(: distance (-> (Listof Real) (Listof Real) Nonnegative-Real))
-(define (distance p1 p2)
-  (apply norm (map - p1 p2)))
+(struct P ([x : Real] [y : Real] [z : Real]))
+
+; radial distance
+(: P-ρ (-> P Nonnegative-Real))
+(define (P-ρ p)
+  (sqrt (+ (sqr (P-x p)) (sqr (P-y p)) (sqr (P-z p)))))
+
+; polar angle (from z-axis)
+(: P-θ (-> P Real))
+(define (P-θ p)
+  (total-asin (P-z p) (P-ρ p)))
+
+; azimuthal angle (on xy-plane)
+(: P-ϕ (-> P Real))
+(define (P-ϕ p)
+  (total-asin (P-y p) (* (cos (P-θ p)) (P-ρ p))))
+
+;;
+;; Misc.
+;;
 
 (: total-atan (-> Real Real Real))
 (define (total-atan o a)
@@ -39,10 +57,3 @@
 (: diff-nearest-mult (-> Real Real Real))
 (define (diff-nearest-mult x y)
   (- x (nearest-multiple x y)))
-
-(: 3d-cartesian->3d-polar (-> Real Real Real (Vector Real Real Real)))
-(define (3d-cartesian->3d-polar x y z)
-  (let* ([radius (sqrt (+ (sqr x) (sqr y) (sqr z)))]
-         [rho    (total-asin z radius)]
-         [theta  (total-asin y (* (cos rho) radius))])
-    (vector theta rho radius)))
