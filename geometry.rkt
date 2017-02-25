@@ -9,14 +9,14 @@
 ;;
 
 (define ((circle r) x y z)
-  (- (+ (sqr x) (sqr y)) (sqr r)))
+  (- (P-ρ (P x y 0)) r))
   
 (define ((square l) x y z)
   (let ([d (/ l 2)])
     (max (- (- d) x) (- x d) (- (- d) y) (- y d))))
 
 (define ((sphere r) x y z)
-  (- (+ (sqr x) (sqr y) (sqr z)) (sqr r)))
+  (- (P-ρ (P x y z)) r))
 
 (define ((cylinder r h) x y z)
   ((extrude-z (circle r) 0 h) x y z))
