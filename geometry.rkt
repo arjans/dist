@@ -4,6 +4,8 @@
 (require (prefix-in m: "math.rkt")
          (only-in "math.rkt" P P-x P-y P-z P-ρ P-θ P-ϕ))
 
+(provide (all-defined-out))
+
 ;;
 ;; Shapes
 ;;
@@ -51,6 +53,18 @@
 (define ((at p f) x y z)
   (f (- x (P-x p)) (- y (P-y p)) (- z (P-z p))))
 
+; reflect across x=o plane
+(define ((reflect-x f o) x y z)
+  (f (- (* 2 o) x) y z))
+
+; reflect across y=o plane
+(define ((reflect-y f o) x y z)
+  (f x (- (* 2 o) y) z))
+
+; reflect across z=o plane
+(define ((reflect-z f o) x y z)
+  (f x y (- (* 2 o) z)))
+
 ; union a variable number of shapes
 (define ((union . fs) x y z)
   (apply min (map (λ (f) (f x y z)) fs)))
@@ -63,6 +77,10 @@
 ; the surface of the shape stays the same
 (define ((inverse f) x y z)
   (- (f x y z)))
+
+; subtract shapes from another
+(define ((difference f . fs) x y z)
+  ((intersection f (inverse (apply union fs))) x y z))
 
 ; extrude a 2d shape along the z-axis,
 ; assuming that the 2d shapes are
