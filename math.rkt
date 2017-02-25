@@ -11,7 +11,7 @@
 ;; Definition of 3d points
 ;;
 
-(struct P ([x : Real] [y : Real] [z : Real]))
+(struct P ([x : Real] [y : Real] [z : Real]) #:transparent)
 
 ; radial distance
 (: P-ρ (-> P Nonnegative-Real))
@@ -27,6 +27,12 @@
 (: P-ϕ (-> P Real))
 (define (P-ϕ p)
   (total-asin (P-y p) (* (cos (P-θ p)) (P-ρ p))))
+
+; project point onto z=n plane
+(: project-z (-> P Real P))
+(define (project-z p n)
+  (match-let ([(P x y z) p])
+    (P x y n)))
 
 ;;
 ;; Misc.

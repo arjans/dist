@@ -4,7 +4,8 @@
 (require (prefix-in m: "math.rkt")
          (only-in "math.rkt" P P-x P-y P-z P-ρ P-θ P-ϕ))
 
-(provide (all-defined-out))
+(provide (all-defined-out)
+         P)
 
 ;;
 ;; Shapes
@@ -16,6 +17,17 @@
 (define ((square l) x y z)
   (let ([d (/ l 2)])
     (max (- (- d) x) (- x d) (- (- d) y) (- y d))))
+
+; Example usage:
+;   (rectangle (P 0 0 0) (P 2 1 0))
+(define ((rectangle p1 p2) x y z)
+  (match-let ([(P x1 y1 z1) p1]
+              [(P x2 y2 z2) p2])
+    (let ([xmin (min x1 x2)]
+          [xmax (max x1 x2)]
+          [ymin (min y1 y2)]
+          [ymax (max y1 y2)])
+      (max (- xmin x) (- x xmax) (- ymin y) (- y ymax)))))
 
 (define ((sphere r) x y z)
   (- (P-ρ (P x y z)) r))
@@ -143,8 +155,8 @@
 
 ; manually done loft
 ;(define x (* 2 (cos (/ pi 4))))
-;(render (intersection (taper2 (circle x 0 0) 1 (/ 1/2 x))
-;                      (taper2 (square 2 0 0) 1 0.5)) 2)
+;(render (intersection (taper2 (circle x) 1 (/ 1/2 x))
+;                      (taper2 (square 2) 1 0.5)) 2)
 
 ;;
 ;; Rendering
@@ -156,12 +168,13 @@
 ; Takes a shape function and the side length of the viewing cube.
 ; Example usage:
 ;   (render (circle 1) 2)
-(define (render f l)
+(define (render f l s)
   (let ([-l (/ (- l) 2)]
         [l  (/ l 2)])
     (p:plot3d
      (p:isosurface3d
       f
       0
-      -l l -l l -l l)
+      -l l -l l -l l
+      #:samples s)
      #:altitude 25)))
