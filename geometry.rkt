@@ -10,7 +10,7 @@
 
 (define ((circle r) x y z)
   (- (+ (sqr x) (sqr y)) (sqr r)))
-
+  
 (define ((square l) x y z)
   (let ([d (/ l 2)])
     (max (- (- d) x) (- x d) (- (- d) y) (- y d))))
@@ -25,6 +25,23 @@
   (- (sqrt (+ (sqr (- R (sqrt (+ (sqr x) (sqr y)))))
               (sqr z)))
      r))
+
+; create a half-space parallel to z-axis
+; a half-space divides space into two -
+; inside and outside
+(define ((2d-half-space p1 p2) x y z)
+  (match-let* ([(P x1 y1 z1) p1]
+               [(P x2 y2 z2) p2])
+    (- (* (- y1 y2) (- x x2)) (* (- x1 x2) (- y y2)))))
+
+; must give triangle points in clockwise order
+; Example usage:
+;   (triangle (P 0 0 0) (P 0 1 0) (P 1 0 0))
+(define ((triangle p1 p2 p3) x y z)
+  ((intersection
+    (2d-half-space p1 p2)
+    (2d-half-space p2 p3)
+    (2d-half-space p3 p1)) x y z))
 
 ;;
 ;; Modifiers
