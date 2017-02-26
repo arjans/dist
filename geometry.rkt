@@ -13,7 +13,7 @@
 
 (define ((circle r) x y z)
   (- (P-ρ (P x y 0)) r))
-  
+
 (define ((square l) x y z)
   (let ([d (/ l 2)])
     (max (- (- d) x) (- x d) (- (- d) y) (- y d))))
