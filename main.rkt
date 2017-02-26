@@ -185,9 +185,15 @@
 (p:plot-width  600)
 (p:plot-height 600)
 
-; Takes a shape function and the side length of the viewing cube.
+; Takes a shape function and creates an interactive plot.
+; Optional arguments:
+;   - side length of the viewing cube
+;   - number of samples per axis
+;
 ; Example usage:
 ;   (render (circle 1))
+;   (render (sphere 5) #:length 10)
+;   (render (sphere 1) #:samples 100)
 (define (render f #:length [l 2] #:samples [s 40])
   (let ([-l (/ (- l) 2)]
         [l  (/ l 2)])

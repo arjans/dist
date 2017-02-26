@@ -28,14 +28,10 @@
 (define (P-ϕ p)
   (total-asin (P-y p) (* (cos (P-θ p)) (P-ρ p))))
 
-; project point onto z=n plane
-(: project-z (-> P Real P))
-(define (project-z p n)
-  (match-let ([(P x y z) p])
-    (P x y n)))
-
 ;;
-;; Misc.
+;; Total functions
+;; b/c these could be called with inputs
+;; that are normally undefined
 ;;
 
 (: total-atan (-> Real Real Real))
@@ -55,6 +51,10 @@
   (if (zero? h)
       0
       (acos (/ a h))))
+
+;;
+;; Misc.
+;;
 
 (: nearest-multiple (-> Real Real Real))
 (define (nearest-multiple x y)

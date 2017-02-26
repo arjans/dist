@@ -1,6 +1,6 @@
 #lang racket
 
-(require "../geometry.rkt")
+(require "../main.rkt")
 
 ; Example usage:
 ;   (r upright)
@@ -12,7 +12,7 @@
   (difference
    (extrude-z (triangle (P -2.001 .501 0) (P 0 8.498 0) (P 2.001 .501 0)) 0 1.687)
    (extrude-z (at (P 0 7.5 0) (square 4)) -.1 1.7)))
-  
+
 (define u-tri-pockets
   (extrude-z
    (union
@@ -51,7 +51,7 @@
   (difference
    (extrude-z (triangle (P -2.02 -.415 0) (P 2.02 -.415 0) (P 0 -10.261 0)) 0 1.687)
    (extrude-z (at (P 0 -7.387 0) (square 4)) -.1 1.7)))
-  
+
 (define l-tri-pockets
   (extrude-z
    (union
@@ -115,7 +115,7 @@
    f-fillet))
 
 (define c-cutout
-  (union 
+  (union
    (circle (/ 3.292 2))
    (extrude-z (circle (/ 3.542 2)) -0.1 .512)
    (extrude-z (circle (/ 3.542 2)) 1.426 2)))
