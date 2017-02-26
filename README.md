@@ -13,12 +13,10 @@ This project is a way to easily experiment with signed distance fields, a repres
 
 ## Demo
 
-An upright for an FSAE car modelled with dist. See the code for this example in [/examples/upright.rkt](/examples/upright.rkt)
+An upright for an FSAE car modelled with dist. The original model from Solidworks is given for comparison. See the code for this example in [/examples/upright.rkt](/examples/upright.rkt)
 
-![alt upright modelled with dist](/images/upright-dist.png)
-
-Screenshot of the original part modelled in Solidworks for comparison:
-
-![alt upright modelled with solidworks](/images/upright-solidworks.png)
+Dist                                              |  Solidworks
+:------------------------------------------------:|:------------------------------------------------------------:
+![alt upright in dist](/images/upright-dist.png)  |  ![alt upright in solidworks](/images/upright-solidworks.png)
 
 ## Usage
