@@ -3,22 +3,9 @@
 (require "../geometry.rkt")
 (require (prefix-in p: plot))
 
+; Example usage:
+;   (r upright)
 (define (r f) (render f #:length 12 #:samples 30))
-
-(define (render-file f #:length [l 12] #:samples [s 30])
-  (let ([-l (/ (- l) 2)]
-        [l  (/ l 2)])
-    (p:plot3d-file
-     (p:isosurface3d
-      f
-      0
-      -l l -l l -l l
-      #:samples s)
-     "upright.png" 'png
-     #:altitude 50
-     #:angle 311)))
-
-(define (rf f) (render-file f #:length 12 #:samples 100))
 
 ; u - upper, l - lower, c - center, f - flange
 
