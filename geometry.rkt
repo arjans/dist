@@ -57,7 +57,8 @@
     (2d-half-space p2 p3)
     (2d-half-space p3 p1)) x y z))
 
-; height of rectangle, width of rectangle
+; for symmetric trapezoids only
+; takes: height of trapezoid, smaller width of trapezoid
 ; and base of triangle
 (define ((trapezoid h w b) x y z)
   (let* ([w (/ w 2)]
@@ -176,18 +177,6 @@
     (max (- 0 z)
          (- z h)
          ((scale f n) x y z))))
-
-; taper a 2d shape until a ratio of the original
-(define ((taper2 f h r) x y z)
-  (let ([n (/ (- h (* (- h (* h r)) z)) h)])
-    (max (- 0 z)
-         (- z h)
-         ((scale f n) x y z))))
-
-; manually done loft
-;(define x (* 2 (cos (/ pi 4))))
-;(render (intersection (taper2 (circle x) 1 (/ 1/2 x))
-;                      (taper2 (square 2) 1 0.5)) 2)
 
 ;;
 ;; Rendering
