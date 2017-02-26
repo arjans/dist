@@ -1,7 +1,6 @@
 #lang racket
 
 (require "../geometry.rkt")
-(require (prefix-in p: plot))
 
 ; Example usage:
 ;   (r upright)
