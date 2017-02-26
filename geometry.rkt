@@ -57,6 +57,17 @@
     (2d-half-space p2 p3)
     (2d-half-space p3 p1)) x y z))
 
+; height of rectangle, width of rectangle
+; and base of triangle
+(define ((trapezoid h w b) x y z)
+  (let* ([w (/ w 2)]
+         [-w (- w)])
+    ((union
+      (rectangle (P -w 0 0) (P w h 0))
+      (triangle (P w 0 0) (P w h 0) (P (+ w b) 0 0))
+      (triangle (P -w 0 0) (P (- -w b) 0 0) (P -w h 0)))
+     x y z)))
+
 ;;
 ;; Modifiers
 ;;
@@ -66,15 +77,15 @@
   (f (- x (P-x p)) (- y (P-y p)) (- z (P-z p))))
 
 ; reflect across x=o plane
-(define ((reflect-x f o) x y z)
+(define ((reflect-x f [o 0]) x y z)
   (f (- (* 2 o) x) y z))
 
 ; reflect across y=o plane
-(define ((reflect-y f o) x y z)
+(define ((reflect-y f [o 0]) x y z)
   (f x (- (* 2 o) y) z))
 
 ; reflect across z=o plane
-(define ((reflect-z f o) x y z)
+(define ((reflect-z f [o 0]) x y z)
   (f x y (- (* 2 o) z)))
 
 ; union a variable number of shapes
@@ -167,8 +178,8 @@
 
 ; Takes a shape function and the side length of the viewing cube.
 ; Example usage:
-;   (render (circle 1) 2)
-(define (render f l s)
+;   (render (circle 1))
+(define (render f #:length [l 2] #:samples [s 40])
   (let ([-l (/ (- l) 2)]
         [l  (/ l 2)])
     (p:plot3d
