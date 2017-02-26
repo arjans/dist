@@ -88,6 +88,26 @@
 (define ((reflect-z f [o 0]) x y z)
   (f x y (- (* 2 o) z)))
 
+; Example usage:
+;   (rotate-x (circle 1) (/ pi 4))
+(define ((rotate-x f θ) x y z)
+  (f
+   x
+   (+ (* (cos θ) y) (* (- (sin θ)) z))
+   (+ (* (sin θ) y) (* (cos θ) z))))
+
+(define ((rotate-y f θ) x y z)
+  (f
+   (+ (* (cos θ) x) (* (sin θ) z))
+   y
+   (+ (* (- (sin θ)) x) (* (cos θ) z))))
+
+(define ((rotate-z f θ) x y z)
+  (f
+   (+ (* (cos θ) x) (* (- (sin θ)) y))
+   (+ (* (sin θ) x) (* (cos θ) y))
+   z))
+
 ; union a variable number of shapes
 (define ((union . fs) x y z)
   (apply min (map (λ (f) (f x y z)) fs)))
