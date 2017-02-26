@@ -5,10 +5,10 @@ This project is a way to easily experiment with signed distance fields, a repres
 
 ## Installation
 
-1. Download Dr Racket
-2. Clone this repo
-3. Open "geometry.rkt" in Dr Racket
-4. Hit "Run"
+1. Download [Racket](https://download.racket-lang.org) - comes with the Dr. Racket IDE
+2. Clone this repo `git clone https://github.com/arjans/dist`
+3. Open the "geometry.rkt" file in Dr. Racket
+4. Hit the green "Run" button
 5. Enter `(render (sphere 1))` in the repl
 
 ## Demo
