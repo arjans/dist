@@ -16,5 +16,3 @@ An upright for an FSAE car modelled with dist. The original model from Solidwork
 Dist                                              |  Solidworks
 :------------------------------------------------:|:------------------------------------------------------------:
 ![alt upright in dist](/images/upright-dist.png)  |  ![alt upright in solidworks](/images/upright-solidworks.png)
-
-## Usage
