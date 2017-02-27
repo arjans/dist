@@ -2,6 +2,8 @@
 (define collection "dist")
 (define deps '("base"
                "rackunit-lib"))
-(define pkg-desc "Exploring distance fields using plot.")
+(define build-deps '("scribble-lib" "racket-doc"))
+(define scribblings '(("scribblings/dist.scrbl" ())))
+(define pkg-desc "Description Here")
 (define version "0.0")
 (define pkg-authors '(arjan))
