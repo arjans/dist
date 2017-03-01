@@ -1,4 +1,4 @@
-# Dist: 3d Modelling with Signed Distance Fields
+# Dist: 3d Modeling with Signed Distance Fields
 
 Dist is a simple way to model 3d objects with signed distance fields. You can define functions representing shapes in Racket, and then render them in the repl using Racket's plot library. Here's a simple example of a shape function and its corresponding output in the repl:
 
@@ -22,6 +22,10 @@ The idea behind signed distance fields is simple: all shapes are represented by 
 ((my-sphere 1) 1 1 1) ; =>  0.7320508075688772
 ```
 
+There are also various ways of combining shapes, such as the basic constructive solid geometry operations `union`, `intersection`, and `difference` as well as others like `repeat-1d`, `extrude-z`, and `taper`. A big motivation for using Racket (and especially the IDE) for this project was to be able to display your model in the repl and interact with it there. That way you can start with basic shapes and make small modifications using the csg functions to build up larger models. Old models stay in the repl history as well. Here's what that looks like:
+
+![alt dist in the repl](/images/dist-repl.png)
+
 ## Installation
 
 1. Download [Racket](https://download.racket-lang.org) - comes with the Dr. Racket IDE
@@ -30,7 +34,7 @@ The idea behind signed distance fields is simple: all shapes are represented by 
 
 ## What's possible?
 
-Here's an upright for an FSAE car modelled with dist. The original model from Solidworks is given for comparison. See the code for this example in [/examples/upright.rkt](/examples/upright.rkt)
+Here's an upright for an FSAE car modeled with dist. The original model from Solidworks is given for comparison. See the code for this example in [/examples/upright.rkt](/examples/upright.rkt)
 
 Dist                                              |  Solidworks
 :------------------------------------------------:|:------------------------------------------------------------:
