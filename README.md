@@ -24,7 +24,7 @@ The idea behind signed distance fields is simple: all shapes are represented by 
 
 There are also various ways of combining shapes, such as the basic constructive solid geometry operations `union`, `intersection`, and `difference` as well as others like `repeat-1d`, `extrude-z`, and `taper`. A big motivation for using Racket (and especially the IDE) for this project was to be able to display your model in the repl and interact with it there. That way you can start with basic shapes and make small modifications using the csg functions to build up larger models. Old models stay in the repl history as well. Here's what that looks like:
 
-![alt dist in the repl](/images/dist-repl.png)
+![alt dist in the repl](/images/dist-repl.gif)
 
 ## Installation
 

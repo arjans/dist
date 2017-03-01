@@ -4,7 +4,7 @@
 
 ; Example usage:
 ;   (r upright)
-(define (r f) (render f #:length 12 #:samples 30))
+(define (r f) (render f #:length 12 #:samples 50))
 
 ; u - upper, l - lower, c - center, f - flange
 
