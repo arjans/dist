@@ -2,7 +2,7 @@
 
 (require (only-in plot/utils polar->cartesian))
 
-(provide P P-x P-y P-z P-ρ P-θ P-ϕ
+(provide (struct-out P) P-ρ P-θ P-ϕ
          total-atan total-asin total-acos
          nearest-multiple diff-nearest-mult
          polar->cartesian)
